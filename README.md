@@ -12,11 +12,13 @@ int hours12, hours24, minutes, seconds;
 string ampm;
 
 //function to add an hour to 12 hour clock
-void addHour() {
+void addHour() 
+	{
 	hours12 = hours12 + 1;
 
 	//after inputting time to add
-	if (hours12 >= 12) {
+	if (hours12 >= 12) 
+ 	{
 		hours12 = hours12 - 12;
 		if (ampm == "AM")
 			ampm = "PM";
@@ -25,29 +27,34 @@ void addHour() {
 	}
 }
 //function to add minutes to 12 hour clock
-void addMinute() {
+void addMinute()
+	{
 	minutes = minutes + 1;
 
 	//after inputting time to add as long as it is under 60 minutes
-	if (minutes > 59) {
+	if (minutes > 59) 
+ 	{
 		minutes = 0;
 		addHour();
 
 	}
 }
 //function to add seconds to 12 hour clock
-void addSecond() {
+void addSecond() 
+	{
 	seconds = seconds + 1;
 
 	//after inputting time to add as long as it is under 60 seconds
-	if (seconds > 59) {
+	if (seconds > 59) 
+ 	{
 		seconds = 0;
 		addMinute();
 	}
 }
 
 //main function
-int main() {
+int main()
+	{
 
 	//variables
 	int choice = 0;
@@ -59,16 +66,20 @@ int main() {
 	ampm = "PM";
 
 	//infinite loop unless user wish to exit
-	while (1) {
+	while (1) 
+ 	{
 
 		//calculating the 24 hours calculation
-		if (ampm == "PM") {
+		if (ampm == "PM") 
+  		{
 			hours24 = hours12 + 12;
-			if (hours24 >= 24) {
+			if (hours24 >= 24) 
+   			{
 				hours24 = hours24 - 24;
 			}
 		}
-		else {
+		else 
+  		{
 			hours24 = hours12;
 		}
 		//printing the clock side by side with * surrounding each clock
@@ -89,28 +100,32 @@ int main() {
 		cin >> choice;
 
 		//for when choosing option 1
-		if (choice == 1) {
+		if (choice == 1) 
+  		{
 
 			//function to add an hour
 			addHour();
 		}
 		
 		//for when choosing option 2
-		else if (choice == 2) {
+		else if (choice == 2)
+  		{
 
 			//function to add a minute
 			addMinute();
 		}
 
 		//for when choosing option 3
-		else if (choice == 3) {
+		else if (choice == 3)
+  		{
 
 			//function to add second
 			addSecond();
 		}
 
 		//for when choosing option 4
-		else if (choice == 4) {
+		else if (choice == 4)
+  		{
 
 			//if user wish to exit
 			cout << "Exiting program...";
@@ -118,7 +133,8 @@ int main() {
 		}
 
 		//incase invalid option 
-		else {
+		else 
+  		{
 
 			//printing the error message
 			cout << "Invalid input. Try Again...";
