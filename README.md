@@ -1,18 +1,130 @@
-1) Summarize the project and what problem it was solving.
-The project was to create a 12 and 24 hour clock to meet internatinal standard ISO 8601 for Chada Tech.
+//header
+#include<iostream>
+#include<string>
+#include<iomanip>
 
-2) What did you do particularly well?
-I thought that typing the overall code was pretty easy once i got the hang of it since I had java from my past class stuck in my head. I followed my flow chart and pusedocode.
+using namespace std;
 
-3) Where could you enhance your code? How would these improvements make your code more efficient, secure, and so on?
-I feel like there might have been another way i could have placed the 2 clocks side by side then printing them the way i did. IF there is the improvment would be that it would look more organized and a little easier to read.
+//varibles for global clock
+int hours12, hours24, minutes, seconds;
 
-4) Which pieces of the code did you find most challenging to write, and how did you overcome this? What tools or resources are you adding to your support network?
-I did have trouble moving from java to C++, honestly at first i thought that C++ was the more difficult the java but If i can get the hang of java then i knew i would grasp C++. while i was trying to code both of the clocks i tried to make then seperatly but even when using w3 schools (which is my favorite refernce when doing my projects so far) i couldnt figure it out so with trial and error I was finally able to print them side by side.
+//to use both options AM and PM in the clock
+string ampm;
 
-5) What skills from this project will be particularly transferable to other projects or course work?
-I may need to go back to this project if I have to write a code that needs to output two items side by side as i needed a little help to complete this project. 
+//function to add an hour to 12 hour clock
+void addHour() {
+	hours12 = hours12 + 1;
 
-6) How did you make this program maintainable, readable, and adaptable?
-When reading the details that i need to include in my project I write down notes that may help me. Using those notes I write my flow chart and pusodecod that plans out how my code should follow. I tried to keep my code organized and my in comments makes it a little easier to navigate through.
+	//after inputting time to add
+	if (hours12 >= 12) {
+		hours12 = hours12 - 12;
+		if (ampm == "AM")
+			ampm = "PM";
+		else
+			ampm = "AM";
+	}
+}
+//function to add minutes to 12 hour clock
+void addMinute() {
+	minutes = minutes + 1;
+
+	//after inputting time to add as long as it is under 60 minutes
+	if (minutes > 59) {
+		minutes = 0;
+		addHour();
+
+	}
+}
+//function to add seconds to 12 hour clock
+void addSecond() {
+	seconds = seconds + 1;
+
+	//after inputting time to add as long as it is under 60 seconds
+	if (seconds > 59) {
+		seconds = 0;
+		addMinute();
+	}
+}
+
+//main function
+int main() {
+
+	//variables
+	int choice = 0;
+
+	//setting the intial clock timing manually
+	hours12 = 10;
+	minutes = 59;
+	seconds = 58;
+	ampm = "PM";
+
+	//infinite loop unless user wish to exit
+	while (1) {
+
+		//calculating the 24 hours calculation
+		if (ampm == "PM") {
+			hours24 = hours12 + 12;
+			if (hours24 >= 24) {
+				hours24 = hours24 - 24;
+			}
+		}
+		else {
+			hours24 = hours12;
+		}
+		//printing the clock side by side with * surrounding each clock
+		cout << "****************************\t\t****************************\n";
+		cout << "*      12-Hour clock       *\t\t*      24-Hour clock       *\n";
+		cout << "*      " << setw(2) << setfill('0') << hours12 << ":" << setw(2) << setfill('0') << minutes << ":" << setw(2) << setfill('0') << seconds << " " << ampm << "         *";
+		cout << "\t\t*        "      << setw(2) << setfill('0') << hours24 << ":" << setw(2) << setfill('0') << minutes << ":" << setw(2) << setfill('0') << seconds << " " << "         *\n";
+		cout << "****************************\t\t****************************\n";
+		
+		//printing the option surrounded by *
+		cout << "\n\n****************************\n";
+		cout << "* 1-Add one hour           *\n";
+		cout << "* 2-Add one minutes        *\n";
+		cout << "* 3-Add one second         *\n";
+		cout << "* 4-Exit program           *\n";
+		cout << "****************************\n";
+		cout << "Choose and option: ";
+		cin >> choice;
+
+		//for when choosing option 1
+		if (choice == 1) {
+
+			//function to add an hour
+			addHour();
+		}
+		
+		//for when choosing option 2
+		else if (choice == 2) {
+
+			//function to add a minute
+			addMinute();
+		}
+
+		//for when choosing option 3
+		else if (choice == 3) {
+
+			//function to add second
+			addSecond();
+		}
+
+		//for when choosing option 4
+		else if (choice == 4) {
+
+			//if user wish to exit
+			cout << "Exiting program...";
+			break;
+		}
+
+		//incase invalid option 
+		else {
+
+			//printing the error message
+			cout << "Invalid input. Try Again...";
+		}
+	}
+	//to return the message 
+	return 0;
+}
 
